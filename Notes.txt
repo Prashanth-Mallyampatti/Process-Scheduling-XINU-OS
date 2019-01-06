@@ -1,0 +1,51 @@
+Additional Note
+
+1) Advantages and disadvantages of:
+
+Exponential Distribution Scheduler
+
+	Advantages:
+	->Since selection of which  process to be scheduled in exponentially random, it solves two problems: 
+		* Starvation of low of priority process.(Since it follows the exponential curve every process will get at-least one chance)
+	        * Highest priority is served more as it should be.-
+	->The exponential curve can be changed which in-turn changes the random number generation pattern as per requirements. Ideal case is setting 'lamda' to 10.
+
+	Disadvantages:
+	->If the lambda is not selected properly the highest process might not be scheduled at all and similarly least priority process  might always be scheduled over the highest one.
+	->If large number of processes are to be scheduled, the accuracy of random number generated should be high for which it takes more computations.
+
+
+Linux-Like Scheduler
+
+	Advantages:
+	->Process is scheduled based on its priority which solves most of the problems above.	    
+	->Problems of randomization is solved as it doesn't always select low or higher priority one.
+	->Efficiently handles new incoming processes by not preempting the currently executing process.
+
+	Disadvanatges:
+	->For large number of processes to be scheduled their can be huge number of calculations and look ups which introduces delays in deciding which process schedule as we are dynamically scheduling.
+	->If null process aren't handled serious issues might arise.
+
+
+Round Robin in XINU
+
+	Advantages:
+	->Biggest advantage of this type is it schedules faster as it should just pick the highest priority and schedule.
+	->The problem of highest priority process not being scheduled never happens in this type.
+
+	Disadvantages:	
+	->Lowest priority processes mostly suffers starvation problem.
+
+
+2) Scheduler's effect on NULL process:
+
+Exponential Distribution Scheduler
+	NULL process is scheduled when there is no other process in the ready queue.
+
+Linux-Like Scheduler
+	Null process is scheduled when all other processes have completed within that epoch or if there no processes in the queue.
+
+Xinu Scheduler
+	NULL process is scheduled when there is no other process in the ready queue.
+
+
